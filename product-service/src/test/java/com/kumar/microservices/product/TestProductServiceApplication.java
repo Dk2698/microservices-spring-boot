@@ -1,5 +1,6 @@
 package com.kumar.microservices.product;
 
+import com.kumar.microservices.productservice.ProductServiceApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
