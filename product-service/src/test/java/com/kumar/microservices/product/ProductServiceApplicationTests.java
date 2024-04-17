@@ -9,18 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.junit.jupiter.Container;
 
 import java.math.BigDecimal;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProductServiceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
-	@ServiceConnection
-	static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:7.0.7");
+	@Container
+    @ServiceConnection
+    static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest");
 
 	@LocalServerPort
 	private Integer port;
@@ -43,7 +41,7 @@ class ProductServiceApplicationTests {
 				.contentType("application/json")
 				.body(productRequest)
 				.when()
-				.post("/api/product")
+				.post("/api/products")
 				.then()
 				.log().all()
 				.statusCode(201)
